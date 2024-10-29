@@ -37,7 +37,16 @@ public class SupplierImplService implements SupplierService{
 
     @Override
     public void update(SupplierUpdateDTO updateDTO, String id) {
-
+        Optional<Suppliers> optional = supplierRepository.findById(id);
+        if(optional.isPresent()){
+            optional.get().setName(updateDTO.getName());
+            optional.get().setCnpj(updateDTO.getCnpj());
+            optional.get().setAddress(updateDTO.getAddress());
+            optional.get().setPhoneNumber(updateDTO.getPhoneNumber());
+            supplierRepository.save(optional.get());
+        }else{
+            throw new RuntimeException("this supplier don't exist");
+        }
     }
 
     @Override

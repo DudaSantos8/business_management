@@ -2,6 +2,7 @@ package com.contract_manegement.business.management.controllers;
 
 import com.contract_manegement.business.management.controllers.dtos.SupplierRegisterDTO;
 import com.contract_manegement.business.management.controllers.dtos.SupplierResponseDTO;
+import com.contract_manegement.business.management.controllers.dtos.SupplierUpdateDTO;
 import com.contract_manegement.business.management.services.SupplierService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -37,5 +38,15 @@ public class SupplierController {
     @ResponseStatus(HttpStatus.CREATED)
     public void createSupplier(@RequestBody SupplierRegisterDTO registerDTO){
         service.create(registerDTO);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<?> updateSupplier(@PathVariable String id, @RequestBody SupplierUpdateDTO updateDTO){
+        try {
+            service.update(updateDTO, id);
+            return ResponseEntity.ok().build();
+        }catch (Exception e){
+            return ResponseEntity.status(404).body(Map.of("message", e.getMessage()));
+        }
     }
 }
