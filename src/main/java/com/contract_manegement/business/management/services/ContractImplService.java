@@ -9,7 +9,6 @@ import com.contract_manegement.business.management.repositories.ContractReposito
 import com.contract_manegement.business.management.repositories.SupplierRepository;
 import com.contract_manegement.business.management.services.interfaces.ContractService;
 import com.contract_manegement.business.management.services.mappers.ContractMapper;
-import com.contract_manegement.business.management.services.mappers.SupplierMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -60,6 +59,11 @@ public class ContractImplService implements ContractService {
 
     @Override
     public void remove(String id) {
-
+        Optional<Contracts> optional = contractRepository.findById(id);
+        if(optional.isPresent()){
+            contractRepository.delete(optional.get());
+        }else{
+            throw new RuntimeException("this contract don't exist");
+        }
     }
 }
