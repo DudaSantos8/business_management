@@ -2,7 +2,7 @@ spring:
   application:
     name: contract_management
   datasource:
-    url: JDBC:mysql://localhost:3306/business-management
+    url: jdbc:mysql://localhost:3306/business_management
     username: root
     password: Mysql_2024
     driver-class-name: com.mysql.cj.jdbc.Driver
