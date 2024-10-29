@@ -3,6 +3,7 @@ package com.contract_manegement.business.management.services.mappers;
 import com.contract_manegement.business.management.controllers.dtos.SupplierRegisterDTO;
 import com.contract_manegement.business.management.controllers.dtos.SupplierResponseDTO;
 import com.contract_manegement.business.management.models.Suppliers;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,5 +33,10 @@ public class SupplierMapper {
             dtoList.add(dto);
         }
         return dtoList;
+    }
+
+    public static SupplierResponseDTO forSupplierResponse(Suppliers supplier){
+        ObjectMapper mapper = new ObjectMapper();
+        return mapper.convertValue(supplier, SupplierResponseDTO.class);
     }
 }

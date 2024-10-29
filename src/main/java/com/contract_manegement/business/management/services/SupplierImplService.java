@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class SupplierImplService implements SupplierService{
@@ -25,7 +26,8 @@ public class SupplierImplService implements SupplierService{
 
     @Override
     public SupplierResponseDTO getById(String id) {
-        return null;
+        Optional<Suppliers> optional = supplierRepository.findById(id);
+        return SupplierMapper.forSupplierResponse(optional.orElseThrow(()-> new RuntimeException("this supplier don't exist")));
     }
 
     @Override
