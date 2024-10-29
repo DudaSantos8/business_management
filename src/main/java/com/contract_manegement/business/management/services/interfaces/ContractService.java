@@ -9,7 +9,7 @@ public interface ContractService {
 
     void create(String supplierId, ContractRegisterDTO registerDTO);
 
-    void update(ContractUpdateDTO updateDTO);
+    void update(String id, ContractUpdateDTO updateDTO);
 
     void remove(String id);
 }

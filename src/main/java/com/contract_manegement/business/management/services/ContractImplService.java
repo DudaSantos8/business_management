@@ -9,6 +9,7 @@ import com.contract_manegement.business.management.repositories.ContractReposito
 import com.contract_manegement.business.management.repositories.SupplierRepository;
 import com.contract_manegement.business.management.services.interfaces.ContractService;
 import com.contract_manegement.business.management.services.mappers.ContractMapper;
+import com.contract_manegement.business.management.services.mappers.SupplierMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,7 +26,8 @@ public class ContractImplService implements ContractService {
 
     @Override
     public ContractResponseDTO getById(String id) {
-        return null;
+        Optional<Contracts> optional = contractRepository.findById(id);
+        return ContractMapper.forContractResponse(optional.orElseThrow(()-> new RuntimeException("this contract don't exist")));
     }
 
     @Override
@@ -42,8 +44,18 @@ public class ContractImplService implements ContractService {
     }
 
     @Override
-    public void update(ContractUpdateDTO updateDTO) {
-
+    public void update(String id,ContractUpdateDTO updateDTO) {
+        Optional<Contracts> optional = contractRepository.findById(id);
+        if(optional.isPresent()){
+            optional.get().setContractNumber(updateDTO.getContractNumber());
+            optional.get().setStartDate(updateDTO.getStartDate());
+            optional.get().setEndDate(updateDTO.getEndDate());
+            optional.get().setTotalValue(updateDTO.getTotalValue());
+            optional.get().setDescription(updateDTO.getDescription());
+            contractRepository.save(optional.get());
+        }else{
+            throw new RuntimeException("this contract don't exist");
+        }
     }
 
     @Override
