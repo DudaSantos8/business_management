@@ -1,8 +1,10 @@
 package com.contract_manegement.business.management.controllers.supplier;
 
+import com.contract_manegement.business.management.controllers.contract.dtos.ContractRegisterDTO;
 import com.contract_manegement.business.management.controllers.supplier.dtos.SupplierRegisterDTO;
 import com.contract_manegement.business.management.controllers.supplier.dtos.SupplierResponseDTO;
 import com.contract_manegement.business.management.controllers.supplier.dtos.SupplierUpdateDTO;
+import com.contract_manegement.business.management.services.interfaces.ContractService;
 import com.contract_manegement.business.management.services.interfaces.SupplierService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,6 +21,9 @@ public class SupplierController {
 
     @Autowired
     private SupplierService service;
+
+    @Autowired
+    private ContractService contractService;
 
     @GetMapping
     public List<SupplierResponseDTO> showSuppliers(){
@@ -55,6 +60,16 @@ public class SupplierController {
         try {
             service.remove(id);
             return ResponseEntity.ok().build();
+        }catch (Exception e){
+            return ResponseEntity.status(404).body(Map.of("message", e.getMessage()));
+        }
+    }
+
+    @PostMapping("/{supplierId}/contracts")
+    public ResponseEntity<?> createContract(@PathVariable String supplierId, @RequestBody ContractRegisterDTO contractRegisterDTO){
+        try {
+            contractService.create(supplierId, contractRegisterDTO);
+            return ResponseEntity.status(201).build();
         }catch (Exception e){
             return ResponseEntity.status(404).body(Map.of("message", e.getMessage()));
         }

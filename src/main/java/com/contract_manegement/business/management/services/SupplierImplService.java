@@ -1,6 +1,7 @@
 package com.contract_manegement.business.management.services;
 
 import com.contract_manegement.business.management.controllers.supplier.dtos.SupplierRegisterDTO;
+import com.contract_manegement.business.management.controllers.supplier.dtos.SupplierResponseContractDTO;
 import com.contract_manegement.business.management.controllers.supplier.dtos.SupplierResponseDTO;
 import com.contract_manegement.business.management.controllers.supplier.dtos.SupplierUpdateDTO;
 import com.contract_manegement.business.management.models.Suppliers;
@@ -58,5 +59,10 @@ public class SupplierImplService implements SupplierService {
         }else{
             throw new RuntimeException("this supplier don't exist");
         }
+    }
+
+    @Override
+    public SupplierResponseContractDTO getContractsById(String id) {
+        return null;
     }
 }

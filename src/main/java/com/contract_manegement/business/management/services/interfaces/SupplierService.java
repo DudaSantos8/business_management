@@ -1,6 +1,7 @@
 package com.contract_manegement.business.management.services.interfaces;
 
 import com.contract_manegement.business.management.controllers.supplier.dtos.SupplierRegisterDTO;
+import com.contract_manegement.business.management.controllers.supplier.dtos.SupplierResponseContractDTO;
 import com.contract_manegement.business.management.controllers.supplier.dtos.SupplierResponseDTO;
 import com.contract_manegement.business.management.controllers.supplier.dtos.SupplierUpdateDTO;
 
@@ -16,4 +17,6 @@ public interface SupplierService {
     void update(SupplierUpdateDTO updateDTO, String id);
 
     void remove(String id);
+
+    SupplierResponseContractDTO getContractsById(String id);
 }

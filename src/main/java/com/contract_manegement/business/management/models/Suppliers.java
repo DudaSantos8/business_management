@@ -1,8 +1,13 @@
 package com.contract_manegement.business.management.models;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import org.hibernate.annotations.UuidGenerator;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Suppliers {
@@ -14,6 +19,9 @@ public class Suppliers {
     private String cnpj;
     private String phoneNumber;
     private String address;
+
+    @OneToMany(mappedBy = "suppliers", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Contracts> contracts = new ArrayList<>();
 
     public Suppliers() {
     }
@@ -56,5 +64,13 @@ public class Suppliers {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public List<Contracts> getContracts() {
+        return contracts;
+    }
+
+    public void setContracts(List<Contracts> contracts) {
+        this.contracts = contracts;
     }
 }

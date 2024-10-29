@@ -1,15 +1,36 @@
-package com.contract_manegement.business.management.controllers.contract.dtos;
+package com.contract_manegement.business.management.models;
+
+import jakarta.persistence.*;
+import org.hibernate.annotations.UuidGenerator;
 
 import java.time.LocalDate;
 
-public class ContractUpdateDTO {
+@Entity
+public class Contracts {
+    @Id
+    @UuidGenerator
+    private String id;
     private String contractNumber;
     private LocalDate startDate;
     private LocalDate endDate;
     private Number totalValue;
     private String description;
+    private Boolean active;
 
-    public ContractUpdateDTO() {
+
+    @ManyToOne
+    @JoinColumn(name = "contract_id")
+    private Suppliers suppliers;
+
+    public Contracts() {
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getContractNumber() {
@@ -50,5 +71,21 @@ public class ContractUpdateDTO {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
+    }
+
+    public Suppliers getSuppliers() {
+        return suppliers;
+    }
+
+    public void setSuppliers(Suppliers suppliers) {
+        this.suppliers = suppliers;
     }
 }
