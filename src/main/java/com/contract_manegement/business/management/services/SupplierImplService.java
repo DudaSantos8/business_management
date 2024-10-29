@@ -3,6 +3,7 @@ package com.contract_manegement.business.management.services;
 import com.contract_manegement.business.management.controllers.dtos.SupplierRegisterDTO;
 import com.contract_manegement.business.management.controllers.dtos.SupplierResponseDTO;
 import com.contract_manegement.business.management.controllers.dtos.SupplierUpdateDTO;
+import com.contract_manegement.business.management.models.Suppliers;
 import com.contract_manegement.business.management.repositories.SupplierRepository;
 import com.contract_manegement.business.management.services.mappers.SupplierMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,8 @@ public class SupplierImplService implements SupplierService{
 
     @Override
     public List<SupplierResponseDTO> getAll() {
-        return List.of();
+        List<Suppliers> list = supplierRepository.findAll();
+        return SupplierMapper.forSupplierResponse(list);
     }
 
     @Override
