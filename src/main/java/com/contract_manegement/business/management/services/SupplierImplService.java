@@ -51,6 +51,11 @@ public class SupplierImplService implements SupplierService{
 
     @Override
     public void remove(String id) {
-
+        Optional<Suppliers> optional = supplierRepository.findById(id);
+        if(optional.isPresent()){
+            supplierRepository.delete(optional.get());
+        }else{
+            throw new RuntimeException("this supplier don't exist");
+        }
     }
 }
