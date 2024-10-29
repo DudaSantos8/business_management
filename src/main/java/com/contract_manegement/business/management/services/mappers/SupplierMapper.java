@@ -1,7 +1,10 @@
 package com.contract_manegement.business.management.services.mappers;
 
+import com.contract_manegement.business.management.controllers.contract.dtos.ContractResponseDTO;
 import com.contract_manegement.business.management.controllers.supplier.dtos.SupplierRegisterDTO;
+import com.contract_manegement.business.management.controllers.supplier.dtos.SupplierResponseContractDTO;
 import com.contract_manegement.business.management.controllers.supplier.dtos.SupplierResponseDTO;
+import com.contract_manegement.business.management.models.Contracts;
 import com.contract_manegement.business.management.models.Suppliers;
 
 import java.util.ArrayList;
@@ -43,5 +46,17 @@ public class SupplierMapper {
         responseDTO.setPhoneNumber(supplier.getPhoneNumber());
 
         return responseDTO;
+    }
+
+    public static SupplierResponseContractDTO forSupplierResponseContract(Suppliers supplier){
+        SupplierResponseContractDTO dto = new SupplierResponseContractDTO();
+        List<ContractResponseDTO> dtoList = new ArrayList<>();
+        dto.setId(supplier.getId());
+        dto.setName(supplier.getName());
+        for(Contracts contracts : supplier.getContracts()){
+            dtoList.add(ContractMapper.forContractResponse(contracts));
+        }
+        dto.setContracts(dtoList);
+        return dto;
     }
 }

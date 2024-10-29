@@ -63,6 +63,8 @@ public class SupplierImplService implements SupplierService {
 
     @Override
     public SupplierResponseContractDTO getContractsById(String id) {
-        return null;
+        Optional<Suppliers> suppliers = supplierRepository.findById(id);
+        return SupplierMapper.forSupplierResponseContract(suppliers.
+                orElseThrow(()-> new RuntimeException("this supplier don't exist")));
     }
 }
