@@ -1,13 +1,13 @@
-package com.contract_manegement.business.management.controllers.dtos;
+package com.contract_manegement.business.management.controllers.supplier.dtos;
 
-public class SupplierUpdateDTO {
+public class SupplierRegisterDTO {
 
     private String name;
     private String cnpj;
     private String phoneNumber;
     private String address;
 
-    public SupplierUpdateDTO() {
+    public SupplierRegisterDTO() {
     }
 
     public String getName() {

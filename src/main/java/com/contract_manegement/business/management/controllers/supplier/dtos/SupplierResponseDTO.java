@@ -1,13 +1,22 @@
-package com.contract_manegement.business.management.controllers.dtos;
+package com.contract_manegement.business.management.controllers.supplier.dtos;
 
-public class SupplierRegisterDTO {
+public class SupplierResponseDTO {
 
+    private String id;
     private String name;
     private String cnpj;
     private String phoneNumber;
     private String address;
 
-    public SupplierRegisterDTO() {
+    public SupplierResponseDTO() {
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getName() {

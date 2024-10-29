@@ -1,9 +1,9 @@
-package com.contract_manegement.business.management.controllers;
+package com.contract_manegement.business.management.controllers.supplier;
 
-import com.contract_manegement.business.management.controllers.dtos.SupplierRegisterDTO;
-import com.contract_manegement.business.management.controllers.dtos.SupplierResponseDTO;
-import com.contract_manegement.business.management.controllers.dtos.SupplierUpdateDTO;
-import com.contract_manegement.business.management.services.SupplierService;
+import com.contract_manegement.business.management.controllers.supplier.dtos.SupplierRegisterDTO;
+import com.contract_manegement.business.management.controllers.supplier.dtos.SupplierResponseDTO;
+import com.contract_manegement.business.management.controllers.supplier.dtos.SupplierUpdateDTO;
+import com.contract_manegement.business.management.services.interfaces.SupplierService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

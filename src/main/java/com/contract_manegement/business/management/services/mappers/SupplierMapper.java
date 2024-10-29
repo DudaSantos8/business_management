@@ -1,7 +1,7 @@
 package com.contract_manegement.business.management.services.mappers;
 
-import com.contract_manegement.business.management.controllers.dtos.SupplierRegisterDTO;
-import com.contract_manegement.business.management.controllers.dtos.SupplierResponseDTO;
+import com.contract_manegement.business.management.controllers.supplier.dtos.SupplierRegisterDTO;
+import com.contract_manegement.business.management.controllers.supplier.dtos.SupplierResponseDTO;
 import com.contract_manegement.business.management.models.Suppliers;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
