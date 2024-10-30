@@ -6,6 +6,7 @@ import com.contract_manegement.business.management.controllers.supplier.dtos.Sup
 import com.contract_manegement.business.management.controllers.supplier.dtos.SupplierUpdateDTO;
 import com.contract_manegement.business.management.services.interfaces.ContractService;
 import com.contract_manegement.business.management.services.interfaces.SupplierService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -41,12 +42,12 @@ public class SupplierController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public void createSupplier(@RequestBody SupplierRegisterDTO registerDTO){
+    public void createSupplier(@RequestBody @Valid SupplierRegisterDTO registerDTO){
         service.create(registerDTO);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> updateSupplier(@PathVariable String id, @RequestBody SupplierUpdateDTO updateDTO){
+    public ResponseEntity<?> updateSupplier(@PathVariable String id, @RequestBody @Valid SupplierUpdateDTO updateDTO){
         try {
             service.update(updateDTO, id);
             return ResponseEntity.ok().build();
@@ -75,7 +76,7 @@ public class SupplierController {
     }
 
     @PostMapping("/{supplierId}/contracts")
-    public ResponseEntity<?> createContract(@PathVariable String supplierId, @RequestBody ContractRegisterDTO contractRegisterDTO){
+    public ResponseEntity<?> createContract(@PathVariable String supplierId, @RequestBody @Valid ContractRegisterDTO contractRegisterDTO){
         try {
             contractService.create(supplierId, contractRegisterDTO);
             return ResponseEntity.status(201).build();

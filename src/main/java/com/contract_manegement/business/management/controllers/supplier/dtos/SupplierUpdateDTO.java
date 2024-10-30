@@ -1,10 +1,24 @@
 package com.contract_manegement.business.management.controllers.supplier.dtos;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import org.hibernate.validator.constraints.br.CNPJ;
+
 public class SupplierUpdateDTO {
 
+    @NotBlank(message = "this field can't be blank")
+    @NotNull(message = "this field can't be null")
     private String name;
+
+    @CNPJ(message = "cnpj not valid")
     private String cnpj;
+
+    @NotBlank(message = "this field can't be blank")
+    @NotNull(message = "this field can't be null")
     private String phoneNumber;
+
+    @NotBlank(message = "this field can't be blank")
+    @NotNull(message = "this field can't be null")
     private String address;
 
     public SupplierUpdateDTO() {

@@ -1,13 +1,34 @@
 package com.contract_manegement.business.management.controllers.contract.dtos;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+
 import java.time.LocalDate;
 
 public class ContractRegisterDTO {
+
+    @NotBlank(message = "this field can't be blank")
+    @NotNull(message = "this field can't be null")
     private String contractNumber;
+
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    @NotNull(message = "this field can't be null")
     private LocalDate startDate;
+
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    @NotNull(message = "this field can't be null")
     private LocalDate endDate;
+
+    @Min(value = 1, message = "the value can't be zero")
     private Number totalValue;
+
+    @NotBlank(message = "this field can't be blank")
+    @NotNull(message = "this field can't be null")
     private String description;
+
+    @NotNull(message = "this field can't be null")
     private Boolean active;
 
     public ContractRegisterDTO() {

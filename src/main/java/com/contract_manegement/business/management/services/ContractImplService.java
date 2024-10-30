@@ -57,7 +57,7 @@ public class ContractImplService implements ContractService {
             optional.get().setEndDate(updateDTO.getEndDate());
             optional.get().setTotalValue(updateDTO.getTotalValue());
             optional.get().setDescription(updateDTO.getDescription());
-            optional.get().setActive(updateDTO.getActive());
+            optional.get().setActive(updateDTO.getEndDate().isAfter(LocalDate.now()));
             contractRepository.save(optional.get());
         }else{
             throw new RuntimeException("this contract don't exist");

@@ -5,6 +5,8 @@ import com.contract_manegement.business.management.controllers.contract.dtos.Con
 import com.contract_manegement.business.management.models.Contracts;
 import com.contract_manegement.business.management.models.Suppliers;
 
+import java.time.LocalDate;
+
 public class ContractMapper {
 
     public static Contracts forContract(Suppliers supplier, ContractRegisterDTO registerDTO){
@@ -15,7 +17,9 @@ public class ContractMapper {
         contract.setEndDate(registerDTO.getEndDate());
         contract.setTotalValue(registerDTO.getTotalValue());
         contract.setDescription(registerDTO.getDescription());
-        contract.setActive(registerDTO.getActive());
+        if (registerDTO.getStartDate().isBefore(registerDTO.getEndDate())){
+            contract.setActive(registerDTO.getEndDate().isAfter(LocalDate.now()));
+        }
         contract.setSuppliers(supplier);
 
         return contract;
