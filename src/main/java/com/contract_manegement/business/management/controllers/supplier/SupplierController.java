@@ -94,6 +94,14 @@ public class SupplierController {
         }
     }
 
+    @GetMapping("/{id}/contractsByActive")
+    public ResponseEntity<?> getContractsByActive(@PathVariable String id, @RequestParam Boolean active){
+        try {
+            return ResponseEntity.ok().body(service.getContractsByActive(id, active));
+        }catch (Exception e){
+            return ResponseEntity.status(404).body(Map.of("message", e.getMessage()));
+        }
+    }
 
     @PostMapping("/{supplierId}/contracts")
     public ResponseEntity<?> createContract(@PathVariable String supplierId, @RequestBody @Valid ContractRegisterDTO contractRegisterDTO){

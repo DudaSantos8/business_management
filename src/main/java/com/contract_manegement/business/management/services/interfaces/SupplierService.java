@@ -24,4 +24,7 @@ public interface SupplierService {
     SupplierResponseContractDTO getContractsByStartDate(String id, LocalDate date);
 
     SupplierResponseContractDTO getContractsByEndDate(String id, LocalDate date);
+
+    SupplierResponseContractDTO getContractsByActive(String id, Boolean active);
+
 }

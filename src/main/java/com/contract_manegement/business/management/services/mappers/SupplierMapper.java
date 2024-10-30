@@ -60,7 +60,7 @@ public class SupplierMapper {
         return dto;
     }
 
-    public static SupplierResponseContractDTO forSupplierResponseContractByDate(Suppliers supplier, List<Contracts> list){
+    public static SupplierResponseContractDTO forSupplierResponseContractByFilter(Suppliers supplier, List<Contracts> list){
         SupplierResponseContractDTO dto = new SupplierResponseContractDTO();
         List<ContractResponseDTO> dtoList = new ArrayList<>();
         dto.setId(supplier.getId());
