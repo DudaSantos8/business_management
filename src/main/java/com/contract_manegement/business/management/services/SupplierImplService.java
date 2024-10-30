@@ -4,13 +4,16 @@ import com.contract_manegement.business.management.controllers.supplier.dtos.Sup
 import com.contract_manegement.business.management.controllers.supplier.dtos.SupplierResponseContractDTO;
 import com.contract_manegement.business.management.controllers.supplier.dtos.SupplierResponseDTO;
 import com.contract_manegement.business.management.controllers.supplier.dtos.SupplierUpdateDTO;
+import com.contract_manegement.business.management.models.Contracts;
 import com.contract_manegement.business.management.models.Suppliers;
+import com.contract_manegement.business.management.repositories.ContractRepository;
 import com.contract_manegement.business.management.repositories.SupplierRepository;
 import com.contract_manegement.business.management.services.interfaces.SupplierService;
 import com.contract_manegement.business.management.services.mappers.SupplierMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,6 +22,9 @@ public class SupplierImplService implements SupplierService {
 
     @Autowired
     private SupplierRepository supplierRepository;
+
+    @Autowired
+    private ContractRepository contractRepository;
 
     @Override
     public List<SupplierResponseDTO> getAll() {
@@ -66,5 +72,13 @@ public class SupplierImplService implements SupplierService {
         Optional<Suppliers> suppliers = supplierRepository.findById(id);
         return SupplierMapper.forSupplierResponseContract(suppliers.
                 orElseThrow(()-> new RuntimeException("this supplier don't exist")));
+    }
+
+    @Override
+    public SupplierResponseContractDTO getContractsByStartDate(String id, LocalDate date) {
+        Optional<Suppliers> suppliers = Optional.ofNullable(supplierRepository.findById(id).
+                orElseThrow(() -> new RuntimeException("This supplier don't exist")));
+        List<Contracts> contracts = contractRepository.findBySupplierIdAndStartDateGreaterThanEqual(id, date);
+        return SupplierMapper.forSupplierResponseContractByStartDate(suppliers.get(), contracts);
     }
 }

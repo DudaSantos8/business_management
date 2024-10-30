@@ -12,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 
@@ -74,6 +75,16 @@ public class SupplierController {
             return ResponseEntity.status(404).body(Map.of("message", e.getMessage()));
         }
     }
+
+    @GetMapping("/{id}/contractsByDate")
+    public ResponseEntity<?> getContractsByStartDate(@PathVariable String id, @RequestParam LocalDate date){
+        try {
+            return ResponseEntity.ok().body(service.getContractsByStartDate(id, date));
+        }catch (Exception e){
+            return ResponseEntity.status(404).body(Map.of("message", e.getMessage()));
+        }
+    }
+
 
     @PostMapping("/{supplierId}/contracts")
     public ResponseEntity<?> createContract(@PathVariable String supplierId, @RequestBody @Valid ContractRegisterDTO contractRegisterDTO){

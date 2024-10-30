@@ -19,7 +19,7 @@ public class Contracts {
 
 
     @ManyToOne
-    @JoinColumn(name = "contract_id")
+    @JoinColumn(name = "supplier_id")
     private Suppliers suppliers;
 
     public Contracts() {

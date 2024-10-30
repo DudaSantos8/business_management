@@ -5,6 +5,7 @@ import com.contract_manegement.business.management.controllers.supplier.dtos.Sup
 import com.contract_manegement.business.management.controllers.supplier.dtos.SupplierResponseDTO;
 import com.contract_manegement.business.management.controllers.supplier.dtos.SupplierUpdateDTO;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public interface SupplierService {
@@ -19,4 +20,6 @@ public interface SupplierService {
     void remove(String id);
 
     SupplierResponseContractDTO getContractsById(String id);
+
+    SupplierResponseContractDTO getContractsByStartDate(String id, LocalDate date);
 }

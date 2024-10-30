@@ -6,6 +6,7 @@ import com.contract_manegement.business.management.controllers.supplier.dtos.Sup
 import com.contract_manegement.business.management.controllers.supplier.dtos.SupplierResponseDTO;
 import com.contract_manegement.business.management.models.Contracts;
 import com.contract_manegement.business.management.models.Suppliers;
+import com.contract_manegement.business.management.repositories.ContractRepository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,6 +55,18 @@ public class SupplierMapper {
         dto.setId(supplier.getId());
         dto.setName(supplier.getName());
         for(Contracts contracts : supplier.getContracts()){
+            dtoList.add(ContractMapper.forContractResponse(contracts));
+        }
+        dto.setContracts(dtoList);
+        return dto;
+    }
+
+    public static SupplierResponseContractDTO forSupplierResponseContractByStartDate(Suppliers supplier, List<Contracts> list){
+        SupplierResponseContractDTO dto = new SupplierResponseContractDTO();
+        List<ContractResponseDTO> dtoList = new ArrayList<>();
+        dto.setId(supplier.getId());
+        dto.setName(supplier.getName());
+        for(Contracts contracts : list){
             dtoList.add(ContractMapper.forContractResponse(contracts));
         }
         dto.setContracts(dtoList);
