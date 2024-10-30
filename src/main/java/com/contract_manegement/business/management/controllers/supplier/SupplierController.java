@@ -103,6 +103,15 @@ public class SupplierController {
         }
     }
 
+    @GetMapping("/{id}/contractsContains")
+    public ResponseEntity<?> getContractsContains(@PathVariable String id, @RequestParam String keyword){
+        try {
+            return ResponseEntity.ok().body(service.getContractsContains(id, keyword));
+        }catch (Exception e){
+            return ResponseEntity.status(404).body(Map.of("message", e.getMessage()));
+        }
+    }
+
     @PostMapping("/{supplierId}/contracts")
     public ResponseEntity<?> createContract(@PathVariable String supplierId, @RequestBody @Valid ContractRegisterDTO contractRegisterDTO){
         try {

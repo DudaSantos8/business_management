@@ -27,4 +27,6 @@ public interface SupplierService {
 
     SupplierResponseContractDTO getContractsByActive(String id, Boolean active);
 
+    SupplierResponseContractDTO getContractsContains(String id, String keyword);
+
 }

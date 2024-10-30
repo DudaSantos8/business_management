@@ -96,6 +96,13 @@ public class SupplierImplService implements SupplierService {
                 orElseThrow(() -> new RuntimeException("This supplier don't exist")));
         List<Contracts> contracts = contractRepository.findBySupplierIdAndActiveThanEqual(id, active);
         return SupplierMapper.forSupplierResponseContractByFilter(suppliers.get(), contracts);
+    }
 
+    @Override
+    public SupplierResponseContractDTO getContractsContains(String id, String keyword) {
+        Optional<Suppliers> suppliers = Optional.ofNullable(supplierRepository.findById(id).
+                orElseThrow(() -> new RuntimeException("This supplier don't exist")));
+        List<Contracts> contracts = contractRepository.findBySupplierIdAndDescriptionContaining(id, keyword);
+        return SupplierMapper.forSupplierResponseContractByFilter(suppliers.get(), contracts);
     }
 }

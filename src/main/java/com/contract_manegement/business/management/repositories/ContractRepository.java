@@ -28,4 +28,9 @@ public interface ContractRepository extends JpaRepository<Contracts, String> {
     List<Contracts> findBySupplierIdAndActiveThanEqual(
             @Param("supplierId") String supplierId,
             @Param("active") Boolean active);
+
+    @Query(value = "SELECT * FROM contracts WHERE supplier_id = :supplierId AND description LIKE %:keyword%", nativeQuery = true)
+    List<Contracts> findBySupplierIdAndDescriptionContaining(
+            @Param("supplierId") String id,
+            @Param("keyword") String keyword);
 }

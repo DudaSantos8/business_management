@@ -9,7 +9,6 @@ import java.time.LocalDate;
 
 public class ContractUpdateDTO {
 
-    @NotBlank(message = "this field can't be blank")
     @NotNull(message = "this field can't be null")
     private String contractNumber;
 
@@ -24,11 +23,9 @@ public class ContractUpdateDTO {
     @Min(value = 1, message = "the value can't be zero")
     private Number totalValue;
 
-    @NotBlank(message = "this field can't be blank")
     @NotNull(message = "this field can't be null")
     private String description;
 
-    @NotBlank(message = "this field can't be blank")
     @NotNull(message = "this field can't be null")
     private Boolean active;
 
