@@ -8,6 +8,7 @@ public class ContractUpdateDTO {
     private LocalDate endDate;
     private Number totalValue;
     private String description;
+    private Boolean active;
 
     public ContractUpdateDTO() {
     }
@@ -50,5 +51,13 @@ public class ContractUpdateDTO {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
     }
 }

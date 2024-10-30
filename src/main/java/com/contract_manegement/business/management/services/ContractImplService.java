@@ -12,6 +12,7 @@ import com.contract_manegement.business.management.services.mappers.ContractMapp
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.Optional;
 
 @Service
@@ -33,7 +34,9 @@ public class ContractImplService implements ContractService {
     public void create(String supplierId, ContractRegisterDTO registerDTO) {
         Optional<Suppliers> supplier = supplierRepository.findById(supplierId);
 
-        if(supplier.isPresent()){
+        if (registerDTO.getStartDate().isAfter(registerDTO.getEndDate())){
+            throw new RuntimeException("date not valid");
+        }else if(supplier.isPresent()){
             Contracts contracts = ContractMapper.forContract(supplier.get(), registerDTO);
             contractRepository.save(contracts);
         }else{
@@ -46,11 +49,15 @@ public class ContractImplService implements ContractService {
     public void update(String id,ContractUpdateDTO updateDTO) {
         Optional<Contracts> optional = contractRepository.findById(id);
         if(optional.isPresent()){
+            if (updateDTO.getStartDate().isAfter(updateDTO.getEndDate())){
+                throw new RuntimeException("date not valid");
+            }
             optional.get().setContractNumber(updateDTO.getContractNumber());
             optional.get().setStartDate(updateDTO.getStartDate());
             optional.get().setEndDate(updateDTO.getEndDate());
             optional.get().setTotalValue(updateDTO.getTotalValue());
             optional.get().setDescription(updateDTO.getDescription());
+            optional.get().setActive(updateDTO.getActive());
             contractRepository.save(optional.get());
         }else{
             throw new RuntimeException("this contract don't exist");

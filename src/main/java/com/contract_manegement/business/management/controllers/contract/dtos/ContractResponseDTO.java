@@ -1,12 +1,26 @@
 package com.contract_manegement.business.management.controllers.contract.dtos;
 
+import java.time.LocalDate;
+
 public class ContractResponseDTO {
+    private String id;
     private String contractNumber;
+    private LocalDate startDate;
+    private LocalDate endDate;
     private Number totalValue;
     private String description;
+
     private Boolean active;
 
     public ContractResponseDTO() {
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getContractNumber() {
@@ -15,6 +29,22 @@ public class ContractResponseDTO {
 
     public void setContractNumber(String contractNumber) {
         this.contractNumber = contractNumber;
+    }
+
+    public LocalDate getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(LocalDate startDate) {
+        this.startDate = startDate;
+    }
+
+    public LocalDate getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(LocalDate endDate) {
+        this.endDate = endDate;
     }
 
     public Number getTotalValue() {

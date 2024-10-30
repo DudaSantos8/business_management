@@ -8,6 +8,7 @@ public class ContractRegisterDTO {
     private LocalDate endDate;
     private Number totalValue;
     private String description;
+    private Boolean active;
 
     public ContractRegisterDTO() {
     }
@@ -52,4 +53,11 @@ public class ContractRegisterDTO {
         this.description = description;
     }
 
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
+    }
 }
