@@ -16,4 +16,11 @@ public interface ContractRepository extends JpaRepository<Contracts, String> {
     List<Contracts> findBySupplierIdAndStartDateGreaterThanEqual(
             @Param("supplierId") String supplierId,
             @Param("startDate") LocalDate startDate
-    );}
+    );
+
+    @Query(value = "SELECT * FROM contracts WHERE supplier_id = :supplierId AND end_date = :endDate", nativeQuery = true)
+    List<Contracts> findBySupplierIdAndEndDateGreaterThanEqual(
+            @Param("supplierId") String supplierId,
+            @Param("endDate") LocalDate endDate
+    );
+}

@@ -3,7 +3,6 @@ package com.contract_manegement.business.management.services;
 import com.contract_manegement.business.management.controllers.contract.dtos.ContractRegisterDTO;
 import com.contract_manegement.business.management.controllers.contract.dtos.ContractResponseDTO;
 import com.contract_manegement.business.management.controllers.contract.dtos.ContractUpdateDTO;
-import com.contract_manegement.business.management.controllers.supplier.dtos.SupplierResponseContractDTO;
 import com.contract_manegement.business.management.models.Contracts;
 import com.contract_manegement.business.management.models.Suppliers;
 import com.contract_manegement.business.management.repositories.ContractRepository;

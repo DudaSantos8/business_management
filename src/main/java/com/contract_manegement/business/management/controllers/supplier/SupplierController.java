@@ -85,6 +85,15 @@ public class SupplierController {
         }
     }
 
+    @GetMapping("/{id}/contractsByEndDate")
+    public ResponseEntity<?> getContractsByEndDate(@PathVariable String id, @RequestParam LocalDate date){
+        try {
+            return ResponseEntity.ok().body(service.getContractsByEndDate(id, date));
+        }catch (Exception e){
+            return ResponseEntity.status(404).body(Map.of("message", e.getMessage()));
+        }
+    }
+
 
     @PostMapping("/{supplierId}/contracts")
     public ResponseEntity<?> createContract(@PathVariable String supplierId, @RequestBody @Valid ContractRegisterDTO contractRegisterDTO){

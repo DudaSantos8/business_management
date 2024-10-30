@@ -79,6 +79,14 @@ public class SupplierImplService implements SupplierService {
         Optional<Suppliers> suppliers = Optional.ofNullable(supplierRepository.findById(id).
                 orElseThrow(() -> new RuntimeException("This supplier don't exist")));
         List<Contracts> contracts = contractRepository.findBySupplierIdAndStartDateGreaterThanEqual(id, date);
-        return SupplierMapper.forSupplierResponseContractByStartDate(suppliers.get(), contracts);
+        return SupplierMapper.forSupplierResponseContractByDate(suppliers.get(), contracts);
+    }
+
+    @Override
+    public SupplierResponseContractDTO getContractsByEndDate(String id, LocalDate date) {
+        Optional<Suppliers> suppliers = Optional.ofNullable(supplierRepository.findById(id).
+                orElseThrow(() -> new RuntimeException("This supplier don't exist")));
+        List<Contracts> contracts = contractRepository.findBySupplierIdAndEndDateGreaterThanEqual(id, date);
+        return SupplierMapper.forSupplierResponseContractByDate(suppliers.get(), contracts);
     }
 }
