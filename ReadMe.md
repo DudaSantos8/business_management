@@ -5,12 +5,13 @@
 -------
 ## Introduction of project
 
-![](.dev/static)
+This project aims to manage suppliers with their contracts,
+with a control whether it is active or not.
 
 ## API Supplier
 
 Add new supplier
-POST/supplier
+POST/suppliers
 route: localhost:8080/suppliers
 ```json
 {
@@ -22,7 +23,7 @@ route: localhost:8080/suppliers
 }
 ```
 Get all suppliers
-GET /supplier
+GET /suppliers
 Route : localhost:8080/suppliers
 Return:
 ```json
@@ -45,11 +46,11 @@ Return:
 ```
 
 Get specific supplier 
-GET / supplier
+GET / suppliers
 Route : localhost:8080/suppliers/{id_supplier}
 
 Update supplier
-PUT / supplier
+PUT / suppliers
 Route : localhost:8080/suppliers/{id_supplier}
 ```json
 {
@@ -61,13 +62,13 @@ Route : localhost:8080/suppliers/{id_supplier}
 ```
 
 Delete supplier
-DELETE / supplier
+DELETE / suppliers
 Route : localhost:8080/suppliers/{id_supplier}
 
 ## API Contract
 
 Add new contract
-POST/ supplier
+POST/ suppliers
 route: localhost:8080/suppliers/{id_contract}/contracts
 ```json
 {
@@ -101,3 +102,75 @@ Route : localhost:8080/contracts/{contract_id}
 Delete contract
 DELETE / contract
 Route : localhost:8080/contracts/{contract_id}
+
+
+## API Filters
+
+Get contracts of specific supplier by start date
+GET / suppliers
+Route : localhost:8080/suppliers/{id_supplier}/contractsByDate?date={start_date}
+
+```json
+{
+  "id": "564a5479-ff45-417e-ade1-453c3b00a4e6",
+  "name": "Ivete Sangalo",
+  "contracts": [
+    {
+      "contractNumber": "MCK-2024-021",
+      "startDate": "2021-10-30",
+      "endDate": "2024-12-01",
+      "totalValue": 20000,
+      "description": "contrato de serviços",
+      "active": true
+    }
+  ]
+}
+```
+
+Get contracts of specific supplier by end date
+GET / suppliers
+Route : localhost:8080/suppliers/{id_supplier}/contractsByEndDate?date={end_date}
+
+```json
+{
+  "id": "564a5479-ff45-417e-ade1-453c3b00a4e6",
+  "name": "Ivete Sangalo",
+  "contracts": [
+    {
+      "contractNumber": "MCK-2024-021",
+      "startDate": "2021-10-30",
+      "endDate": "2024-12-01",
+      "totalValue": 20000,
+      "description": "contrato de serviços",
+      "active": true
+    }
+  ]
+}
+```
+
+Get contracts of specific supplier by active
+GET / suppliers
+Route : localhost:8080/suppliers/{id_supplier}/contractsByActive?active={boolean_active}
+
+Get contracts of specific supplier by keyword
+GET / suppliers
+Route : localhost:8080/suppliers/{id_supplier}/contractsContains?keyword={keyword}
+
+Ex: keyword = serviços
+
+```json
+{
+  "id": "564a5479-ff45-417e-ade1-453c3b00a4e6",
+  "name": "Ivete Sangalo",
+  "contracts": [
+    {
+      "contractNumber": "MCK-2024-021",
+      "startDate": "2021-10-30",
+      "endDate": "2024-12-01",
+      "totalValue": 20000,
+      "description": "contrato de 'serviços' ",
+      "active": true
+    }
+  ]
+}
+```
